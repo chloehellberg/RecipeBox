@@ -1,4 +1,4 @@
-namespace Recipe.Controllers
+namespace RecipeBox.Controllers.Controllers
 {
     public class TagsController
     {

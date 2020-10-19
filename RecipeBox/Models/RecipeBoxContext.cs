@@ -3,13 +3,19 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RecipeBox.Models
 {
-  public class RecipeBoxContex : IdentityDbContext<ApplicationUser>
+  public class RecipeBoxContext : IdentityDbContext<ApplicationUser>
   {
 
     public virtual DbSet<Category> Categories { get; set; }
-    public DbSet<Recipe> Recipe { get; set; }
-    public DbSet<Tags> Tags { get; set; }
+    public DbSet<Recipe> Recipes { get; set; }
+    public DbSet<Tag> Tags { get; set; }
+    public DbSet<RecipeCategory> RecipeCategories { get; set; }
+    public DbSet<RecipeTag> RecipeTags { get; set; }
 
     public RecipeBoxContext(DbContextOptions options) : base(options) { }
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+      {
+        optionsBuilder.UseLazyLoadingProxies();
+      }
   }
 }
