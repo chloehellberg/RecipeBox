@@ -1,0 +1,21 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Recipe
+
+<h2>Recipe Details</h2>
+<hr />
+<h3>@Html.DisplayNameFor(model => model.Name):</h3><h4>Html.DisplayFor(model => Model.Name)</h4>
+<h3>@Html.DisplayNameFor(model => model.Ingredients): </h3><h4>@Html.DisplayFor(model => model.Ingredients)</h4>
+<h3>@Html.DisplayNameFor(model => model.Instructions): </h3><h4>@Html.DisplayFor(model => model.Instructions)</h4>
+@if(@Model.Tags.Count== 0)
+{
+  <p>This recipe contains no tags</p>
+}
+else
+{
+  <h3>Tags:</h3>
+  #foreach(RecipeTags recipetags)
+
+} *@

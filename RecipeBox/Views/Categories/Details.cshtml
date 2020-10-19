@@ -1,0 +1,33 @@
+@* @{
+  Layout = "_Layout";
+}
+@using RecipeBox.Models
+@model RecipeBox.Models.Category
+
+@Html.ActionLink(" View All Categories", "Index", null, null, new { @class="btn btn-info fa fa-user" })
+@Html.ActionLink(" Edit", "Edit", new { id = Model.CategoryId }, new { @class="btn btn-info fa fa-edit" })
+@Html.ActionLink(" Delete", "Delete", new { id = Model.CategoryId }, new { @class="btn btn-info fa fa-times" })
+@Html.ActionLink(" Add Category", "AddCategory", new { id = Model.CategoryId }, new { @class="btn btn-info fa fa-user-plus" })
+
+
+<p>@Html.DisplayFor(model => model.RecipeCategories.Category.Name)'s Details</p>
+<hr />
+<p>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</p>
+
+
+@if(@Model.RecipeCategories.Count == 0)
+{
+  <p>This category does not have a recipe(s) yet.</p>
+}
+else
+{
+  <p>@Html.DisplayFor(model => model.Name)'s Recipe(s):</p>
+  <ul>
+  @foreach(var join in Model.RecipeCategories)
+  {
+    <li>@join.Recipe.Name
+    @Html.ActionLink("Delete", "DeleteRecipe", "Categories", new { joinId = @join.RecipeCategoryId }, new { @class="btn btn-info fa fa-times" })
+    </li>
+  }
+  </ul>
+} *@

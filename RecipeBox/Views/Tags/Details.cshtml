@@ -1,0 +1,26 @@
+@* @{
+  Layout = "_Layout";
+}
+
+@using RecipeBox.Models;
+@model RecipeBox.Models.Tag;
+@Html.ActionLink(" All Tags", "Index", null, null, new { @class="btn btn-info fa fa-medkit" })
+@Html.ActionLink(" Edit", "Edit", null, new { id = Model.TagId }, new { @class="btn btn-info fa fa-edit" })
+@Html.ActionLink(" Delete", "Delete", new { id = Model.TagId }, new { @class="btn btn-info fa fa-times" })
+
+<h2>Tag Details</h2>
+<hr />
+<h3>Tag: @Html.DisplayFor(model => model.TagName)</h3>
+<p>Recipes in this Tag:</p>
+<ul>
+@if (@Model.Recipes.Count == 0)
+{
+  <p>No recipes found</p>
+}
+
+@foreach (var join in Model.Recipes)
+{
+  <li>@join.Recipe.Name</li>
+}
+</ul>
+<hr /> *@

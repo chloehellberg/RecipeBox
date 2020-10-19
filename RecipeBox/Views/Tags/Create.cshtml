@@ -1,0 +1,17 @@
+@{
+  Layout = "_Layout";
+}
+@model RecipeBox.Models.Tag
+@Html.ActionLink(" All Tags", "Index", null, new { @class="btn btn-info fa fa-medkit" })
+<h4>Add Tag</h4>
+
+@using (Html.BeginForm())
+{
+  <table>
+    <tr>
+      <td>@Html.LabelFor(model => model.TagName)</td>
+      <td>@Html.TextBoxFor(model => model.TagName)</td>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-info fa" ><i class="fa-user-plus"> Add</i></button>
+}

@@ -1,0 +1,21 @@
+@{
+  Layout = "_Layout";
+}
+
+@model RecipeBox.Models.Category
+@Html.ActionLink(" All Categories", "Index", null, null, new { @class="btn btn-info fa fa-user" })
+<p>Add a new category</p>
+@using (Html.BeginForm())
+{
+  <table>
+    <tr>
+      <td>@Html.LabelFor(model => model.Name)</td>
+      <td>@Html.TextBoxFor(model => model.Name)</td>
+    </tr>
+    <tr>
+      <td>@Html.Label("Select Recipe")</td>
+      <td>@Html.DropDownList("RecipeId")</td>
+    </tr>
+  </table>
+  <button type="submit" class="btn btn-info fa fa-user-plus"><i class=""> Add</i></button>
+}
