@@ -4,16 +4,19 @@
 
 @using RecipeBox.Models;
 @model List<RecipeBox.Models.Tag>;
-@Html.ActionLink("Add", "Create", null, null, new { @class="btn btn-info fa fa-user-plus" })
-@Html.ActionLink("Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
+@Html.ActionLink(" Add", "Create", null, null, new { @class="btn btn-info fa fa-user-plus" })
+@Html.ActionLink(" Home", "Index", "Home", null, new { @class="btn btn-info fa fa-home" })
 <h1>Tags</h1>
 
 @if (@Model.Count == 0)
 {
-  <h3>No tags have been added yet!</h3>
+  <h3>No Tags have been added yet!</h3>
 } 
-
-@foreach (Tag tag in Model)
-{
-  <li>@Html.ActionLink($"{tag.TagName}", "Details", new { id = tag.TagId })</li>
-}
+<ul>
+  @foreach (Tag tag in Model)
+  {
+    <li>@Html.ActionLink($"{tag.TagName}", "Details", new { id = tag.TagId })</li>
+    
+  }
+</ul>
+<p>@Html.ActionLink("Add new Tag", "Create")</p>

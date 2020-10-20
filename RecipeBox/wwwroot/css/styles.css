@@ -33,3 +33,16 @@
 .col-md-4 {
   text-align: center;
 }
+#photo{
+  
+
+  border: 50% solid black;
+  margin-top: 5%;
+  margin-bottom: 5%;
+  display: block;
+  margin-left: auto;
+  margin-Right: auto;
+  box-shadow: 0 8px 24px 0 black;
+  
+  
+}

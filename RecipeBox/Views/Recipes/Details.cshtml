@@ -1,21 +1,50 @@
-@* @{
+@{
   Layout = "_Layout";
 }
 
+@using RecipeBox.Models
 @model RecipeBox.Models.Recipe
 
 <h2>Recipe Details</h2>
 <hr />
-<h3>@Html.DisplayNameFor(model => model.Name):</h3><h4>Html.DisplayFor(model => Model.Name)</h4>
+<h3>@Html.DisplayNameFor(model => model.Name):</h3><h4>@Html.DisplayFor(model => Model.Name)</h4>
 <h3>@Html.DisplayNameFor(model => model.Ingredients): </h3><h4>@Html.DisplayFor(model => model.Ingredients)</h4>
 <h3>@Html.DisplayNameFor(model => model.Instructions): </h3><h4>@Html.DisplayFor(model => model.Instructions)</h4>
+
 @if(@Model.Tags.Count== 0)
 {
   <p>This recipe contains no tags</p>
-}
-else
+} else
 {
-  <h3>Tags:</h3>
-  #foreach(RecipeTags recipetags)
+  <h2>Tags:</h2>
+  <ul>
+  @foreach(RecipeTag t in @Model.Tags)
+  {
+    <li>@t.Tag.TagName</li>
+  }
+  </ul>
+}
 
-} *@
+
+@if(@Model.Categories.Count== 0)
+{
+  <p>This recipe contains no categories</p>
+} else
+{
+  <h2>Categories:</h2>
+  <ul>
+  @foreach(RecipeCategory c in @Model.Categories)
+  {
+    <li>@c.Category.Name</li>
+  }
+  </ul>
+}
+
+
+<button class="btn btn-outline-dark" onclick="window.location.href='/Recipes/AddCategory/@Model.RecipeId'">Add a Category</button> 
+<button class="btn btn-outline-dark" onclick="window.location.href='/Recipes/AddTag/@Model.RecipeId'">Add a Tag</button>
+<button class="btn btn-outline-dark" onclick="window.location.href='/Recipes'">Recipes</button>
+<button class="btn btn-outline-dark" onclick="window.location.href='/Recipes/Delete/@Model.RecipeId'">Delete</button>
+
+
+

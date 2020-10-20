@@ -60,6 +60,7 @@ namespace RecipeBox.Controllers
       ViewBag.TagId = new SelectList(_db.Tags, "TagId", "TagName");
       return View(thisRecipe);
     }
+
     [HttpPost]
     public ActionResult AddTag(RecipeTag recipeTag)
     {
@@ -69,8 +70,27 @@ namespace RecipeBox.Controllers
         {
           _db.RecipeTags.Add(recipeTag);
         }
-        
-      
+      }
+      _db.SaveChanges();
+      return RedirectToAction("Index");
+    }
+
+    public ActionResult AddCategory(int id)
+    {
+      Recipe thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      ViewBag.CategoryId = new SelectList(_db.Categories, "CategoryId", "Name");
+      return View(thisRecipe);
+    }
+
+    [HttpPost]
+    public ActionResult AddCategory(RecipeCategory recipeCategory)
+    {
+      if (recipeCategory.CategoryId != 0)
+      {
+        if (_db.RecipeCategories.Where(recipe => recipe.RecipeId == recipeCategory.RecipeId && recipe.CategoryId == recipeCategory.CategoryId).ToHashSet().Count == 0)
+        {
+          _db.RecipeCategories.Add(recipeCategory);
+        }
       }
       _db.SaveChanges();
       return RedirectToAction("Index");
@@ -78,17 +98,17 @@ namespace RecipeBox.Controllers
     
     public ActionResult Delete(int id)
     {
-        var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-        return View(thisRecipe);
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      return View(thisRecipe);
     }
     
     [HttpPost, ActionName("Delete")]
     public ActionResult DeleteConfirmed(int id)
     {
-        var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
-        _db.Recipes.Remove(thisRecipe);
-        _db.SaveChanges();
-        return RedirectToAction("Index");
+      var thisRecipe = _db.Recipes.FirstOrDefault(recipe => recipe.RecipeId == id);
+      _db.Recipes.Remove(thisRecipe);
+      _db.SaveChanges();
+      return RedirectToAction("Index");
     }
   }
 }
